@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ministry.MultiHostRedirector", "Ministry.MultiHostRedirector\Ministry.MultiHostRedirector.csproj", "{21249D10-8679-4CB8-AC76-177980FF1437}"
 EndProject
@@ -29,12 +29,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "web-redirector", "web-redir
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ministry.MultiHostRedirector.Tests", "Ministry.MultiHostRedirector.Tests\Ministry.MultiHostRedirector.Tests.csproj", "{E990B469-8A2C-44F3-BF05-08C30C8B7DF3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{3DBA6724-5093-4EB5-96A2-10CA61A3E721}"
-	ProjectSection(SolutionItems) = preProject
-		deploy\Deploy NuGet.bat = deploy\Deploy NuGet.bat
-		nuget\Ministry.MultiHostRedirector.nuspec = nuget\Ministry.MultiHostRedirector.nuspec
-	EndProjectSection
-EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "web-destination", "http://localhost:49309", "{7FC5D6D9-B981-49C7-A4F1-86C2BE0F0CAE}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
@@ -61,6 +55,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F3A703
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DE6BD511-FF4E-48C7-99C6-491433249E67}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\deploy-pms.bat = deploy\deploy-pms.bat
+		deploy\Ministry.MultiHostRedirector.nuspec = deploy\Ministry.MultiHostRedirector.nuspec
 	EndProjectSection
 EndProject
 Global

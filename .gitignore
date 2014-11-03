@@ -7,3 +7,6 @@ Ministry.MultiHostRedirector.Tests/obj/
 Ministry.MultiHostRedirector.Tests/bin/
 deploy/nuget/content/samples/web-redirector/Bin/
 web-redirector/Bin/
+deploy/content/
+*.nupkg
+deploy/lib/

@@ -51,9 +51,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /S /Q /I /R /Y "$(SolutionDir)web-redirector" "$(SolutionDir)release\nuget\content\samples\web-redirector\"
-xcopy /S /Q /I /R /Y "$(SolutionDir)web-destination" "$(SolutionDir)release\nuget\content\samples\web-destination\"
-copy "$(ProjectDir)$(OutDir)*.dll" "$(SolutionDir)release\nuget\content\samples\web-redirector\Bin\"
+    <PostBuildEvent>xcopy /S /Q /I /R /Y "$(SolutionDir)web-redirector" "$(SolutionDir)deploy\content\samples\web-redirector\"
+xcopy /S /Q /I /R /Y "$(SolutionDir)web-destination" "$(SolutionDir)deploy\content\samples\web-destination\"
+copy "$(ProjectDir)$(OutDir)*.dll" "$(SolutionDir)deploy\content\samples\web-redirector\Bin\"
 xcopy /S /Q /I /R /Y "$(ProjectDir)$(OutDir)*.dll" "$(SolutionDir)release\nuget\lib\net40\"
 copy "$(SolutionDir)docs\*" "$(SolutionDir)release\nuget\content\samples\"</PostBuildEvent>
   </PropertyGroup>
