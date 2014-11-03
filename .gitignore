@@ -1,1 +1,9 @@
 packages/
+.nuget/
+Ministry.MultiHostRedirector/obj/
+Ministry.MultiHostRedirector/bin/
+*.suo
+Ministry.MultiHostRedirector.Tests/obj/
+Ministry.MultiHostRedirector.Tests/bin/
+deploy/nuget/content/samples/web-redirector/Bin/
+web-redirector/Bin/
