@@ -2,16 +2,17 @@
 <package >
   <metadata>
     <id>Ministry.MultiHostRedirector</id>
-    <version>1.0.0.2</version>
+    <version>1.0.0.4</version>
     <authors>The Ministry of Technology</authors>
     <owners>The Ministry of Technology</owners>
     <licenseUrl>http://www.opensource.org/licenses/MIT</licenseUrl>
-    <projectUrl>https://bitbucket.org/ministryotech/multi-host-redirector</projectUrl>
+    <projectUrl>https://github.com/ministryotech/iis-multi-host-redirector</projectUrl>
+    <iconUrl>http://www.ministryotech.co.uk/</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A tool to allow redirection of multiple configured hosts for rank preservation. The Multi-Host Redirector will support multiple configuration types. Currently *.config XML configuration is the only configuration type supported.</description>
-    <releaseNotes>See https://bitbucket.org/ministryotech/multi-host-redirector/issues for any outstanding issues.</releaseNotes>
-    <copyright>Copyright 2014</copyright>
-    <tags>URLRedirection SEO Redirect</tags>
+    <releaseNotes>Moved from Bitbucket to Github.</releaseNotes>
+    <copyright>Copyright 2014 Minotech Ltd T/A The Ministry of Technology</copyright>
+    <tags>URLRedirection SEO Redirect IIS</tags>
     <!--<dependencies>
       <dependency id="SampleDependency" version="1.0" />
     </dependencies>-->

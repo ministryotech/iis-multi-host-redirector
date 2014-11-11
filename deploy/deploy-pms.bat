@@ -5,7 +5,7 @@ CALL ..\..\set-nuget-key.bat
 del lib\net40\* /Q
 mkdir lib
 mkdir lib\net40
-copy ..\Ministry.MultiHostRedirector\bin\Release\*.dll lib
+copy ..\Ministry.MultiHostRedirector\bin\Release\*.dll lib\net40
 del *.nupkg
 pause
 
