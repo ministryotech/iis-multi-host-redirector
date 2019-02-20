@@ -11,10 +11,6 @@
 // FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION 
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Configuration;
 
 namespace Ministry.MultiHostRedirector
@@ -57,10 +53,8 @@ namespace Ministry.MultiHostRedirector
         /// <returns>
         /// A new <see cref="T:System.Configuration.ConfigurationElement"/>.
         /// </returns>
-        protected override ConfigurationElement CreateNewElement()
-        {
-            return new HostElement();
-        }
+        protected override ConfigurationElement CreateNewElement() 
+            => new HostElement();
 
         /// <summary>
         /// Gets the element key for a specified configuration element when overridden in a derived class.
@@ -69,10 +63,8 @@ namespace Ministry.MultiHostRedirector
         /// <returns>
         /// An <see cref="T:System.Object"/> that acts as the key for the specified <see cref="T:System.Configuration.ConfigurationElement"/>.
         /// </returns>
-        protected override object GetElementKey(ConfigurationElement element)
-        {
-            return ((HostElement)element).RootUrl;
-        }
+        protected override object GetElementKey(ConfigurationElement element) 
+            => ((HostElement)element).RootUrl;
 
         #endregion
     }

@@ -13,12 +13,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
 using System.Configuration;
-using System.Web.Configuration;
 using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.Configuration;
 
 namespace Ministry.MultiHostRedirector
 {
@@ -35,10 +34,10 @@ namespace Ministry.MultiHostRedirector
         /// <param name="context">An <see cref="T:System.Web.HttpContext"/> object that provides references to the intrinsic server objects (for example, Request, Response, Session, and Server) used to service HTTP requests.</param>
         public void ProcessRequest(HttpContext context)
         {
-            List<RedirectModel> urlMapper = LoadUrls();
-            string oldUrl = context.Request.Url.ToString().ToLower().Trim('/');
-            string defaultRedirect = UrlRedirectConfigurationSection.Get().DefaultRedirectUrl;
-            string desiredLocalFile = context.Request.ServerVariables["SCRIPT_NAME"];
+            var urlMapper = LoadUrls();
+            var oldUrl = context.Request.Url.ToString().ToLower().Trim('/');
+            var defaultRedirect = UrlRedirectConfigurationSection.Get().DefaultRedirectUrl;
+            var desiredLocalFile = context.Request.ServerVariables["SCRIPT_NAME"];
 
             if (oldUrl.Contains("showredirects=true"))
             {
@@ -51,13 +50,13 @@ namespace Ministry.MultiHostRedirector
                 {
                     CommitResponse(context, mapping.RedirectUrl);
                 }
-                else if (!String.IsNullOrEmpty(desiredLocalFile) && File.Exists(context.Server.MapPath(desiredLocalFile)))
+                else if (!string.IsNullOrEmpty(desiredLocalFile) && File.Exists(context.Server.MapPath(desiredLocalFile)))
                 {
                     context.Response.Buffer = true;
                     context.Response.Clear();
                     context.Response.WriteFile(desiredLocalFile);
                 }
-                else if (!String.IsNullOrEmpty(defaultRedirect))
+                else if (!string.IsNullOrEmpty(defaultRedirect))
                 {
                     CommitResponse(context, defaultRedirect);
                 }
@@ -74,11 +73,8 @@ namespace Ministry.MultiHostRedirector
         /// <value>
         /// 	<c>true</c> if this instance is reusable; otherwise, <c>false</c>.
         /// </value>
-        public bool IsReusable
-        {
-            get { return true; }
-        }
-  
+        public bool IsReusable => true;
+
         #endregion
 
         #region | Private Methods |
@@ -102,27 +98,23 @@ namespace Ministry.MultiHostRedirector
 
             if (hosts.Count == 0)
             {
-                foreach (RedirectElement element in redirects)
-                {
-                    retVal.Add(new RedirectModel()
+                retVal.AddRange(redirects.Cast<RedirectElement>()
+                    .Select(element => new RedirectModel
                     {
                         RequestedUrl = element.RequestedUrl.Trim('/'),
                         RedirectUrl = element.RedirectUrl.Trim('/')
-                    });
-                }
+                    }));
             }
             else
             {
                 foreach (HostElement host in hosts)
                 {
-                    foreach (RedirectElement element in redirects)
-                    {
-                        retVal.Add(new RedirectModel()
+                    retVal.AddRange(redirects.Cast<RedirectElement>()
+                        .Select(element => new RedirectModel
                         {
                             RequestedUrl = host.RootUrl.Trim('/') + "/" + element.RequestedUrl.Trim('/'),
                             RedirectUrl = element.RedirectUrl.Trim('/')
-                        });
-                    }
+                        }));
                 }
             }
 
@@ -133,16 +125,10 @@ namespace Ministry.MultiHostRedirector
         /// Gets the redirect URL for a specified request.
         /// </summary>
         /// <param name="requestedUrl">The requested URL.</param>
+        /// <param name="urlMapper">The URL mapper.</param>
         /// <returns></returns>
-        private RedirectModel GetUrlMapping(string requestedUrl, List<RedirectModel> urlMapper)
-        {
-            foreach (RedirectModel mapper in urlMapper)
-            {
-                if (mapper.RequestedUrl == requestedUrl.Trim('/')) return mapper;
-            }
-
-            return null;
-        }
+        private RedirectModel GetUrlMapping(string requestedUrl, IEnumerable<RedirectModel> urlMapper) 
+            => urlMapper.FirstOrDefault(mapper => mapper.RequestedUrl == requestedUrl.Trim('/'));
 
         /// <summary>
         /// Commits the HTTP Response.
@@ -152,7 +138,7 @@ namespace Ministry.MultiHostRedirector
         /// <param name="statusCode">The status code.</param>
         private static void CommitResponse(HttpContext context, string url, int statusCode = 301)
         {
-            if (!String.IsNullOrEmpty(url)) { context.Response.AddHeader("Location", url); }
+            if (!string.IsNullOrEmpty(url)) { context.Response.AddHeader("Location", url); }
             context.Response.StatusCode = statusCode;
             context.Response.End();
         }
@@ -166,7 +152,7 @@ namespace Ministry.MultiHostRedirector
         {
             context.Response.Write("<html><head></head><body><h1>Redirect Configuration</h1>");
             context.Response.Write("The URL Mapper has " + urlMapper.Count + " entries.");
-            foreach (RedirectModel mapper in urlMapper)
+            foreach (var mapper in urlMapper)
             {
                 context.Response.Write("<p>");
                 context.Response.Write("Requested: " + mapper.RequestedUrl);

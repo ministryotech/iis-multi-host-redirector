@@ -11,10 +11,6 @@
 // FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION 
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Configuration;
 
 namespace Ministry.MultiHostRedirector
@@ -30,10 +26,8 @@ namespace Ministry.MultiHostRedirector
         /// Gets this instance.
         /// </summary>
         /// <returns></returns>
-        public static UrlRedirectConfigurationSection Get()
-        {
-            return (UrlRedirectConfigurationSection)ConfigurationManager.GetSection(SectionName);
-        }
+        public static UrlRedirectConfigurationSection Get() 
+            => (UrlRedirectConfigurationSection)ConfigurationManager.GetSection(SectionName);
 
         /// <summary>
         /// Gets the name of the section.
@@ -41,7 +35,7 @@ namespace Ministry.MultiHostRedirector
         /// <value>
         /// The name of the section.
         /// </value>
-        public static string SectionName { get { return "multiHostRedirectData"; } }
+        public static string SectionName => "multiHostRedirectData";
 
         #endregion
 
@@ -52,38 +46,20 @@ namespace Ministry.MultiHostRedirector
         /// </summary>
         [ConfigurationProperty("redirects", IsDefaultCollection = true)]
         [ConfigurationCollection(typeof(RedirectElement), AddItemName = "redirect")]
-        public RedirectElementCollection Redirects
-        {
-            get
-            {
-                return (RedirectElementCollection)base["redirects"];
-            }
-        }
+        public RedirectElementCollection Redirects => (RedirectElementCollection)base["redirects"];
 
         /// <summary>
         /// Gets the hosts.
         /// </summary>
         [ConfigurationProperty("redirectHosts")]
         [ConfigurationCollection(typeof(HostElement), AddItemName = "host")]
-        public HostElementCollection Hosts
-        {
-            get
-            {
-                return (HostElementCollection)base["redirectHosts"];
-            }
-        }
+        public HostElementCollection Hosts => (HostElementCollection)base["redirectHosts"];
 
         /// <summary>
         /// Gets the default redirect url.
         /// </summary>
         [ConfigurationProperty("defaultRedirectUrl")]
-        public string DefaultRedirectUrl
-        {
-            get
-            {
-                return (string)base["defaultRedirectUrl"];
-            }
-        }
+        public string DefaultRedirectUrl => (string)base["defaultRedirectUrl"];
 
         #endregion
     }
