@@ -10,3 +10,4 @@ web-redirector/Bin/
 deploy/content/
 *.nupkg
 deploy/lib/
+\.vs/Multi-Host Redirector/v15/Server/*
